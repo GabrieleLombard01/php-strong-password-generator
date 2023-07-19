@@ -1,0 +1,32 @@
+/*CSS reset*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Custom properties*/
+
+/*Pseudo-classes*/
+
+/*Generics*/
+body{
+    background-image: url(https://w.wallhaven.cc/full/x6/wallhaven-x6pl9v.jpg);
+    background-size: cover;
+
+}
+h1{
+    font-weight: 900;
+}
+/*Utilties*/
+.card_bg_grey{
+    background-color: rgba(0, 0, 0, 0.750);
+}
+.form_card{
+    background-color: rgba(227, 227, 227, 0.8);
+    min-height: 200px;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 10px;
+    padding: 15px;
+}

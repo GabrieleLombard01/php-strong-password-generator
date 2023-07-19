@@ -1,14 +1,18 @@
 <?php
 session_start();
-// Funzioni:
 include_once 'functions.php';
+
 // Controllo se è stata inviata una richiesta con la lunghezza della password
 if (isset($_GET['password_length'])) {
     $password_length = intval($_GET['password_length']);
 
     // Controllo che la lunghezza sia valida (tra 8 e 32 caratteri)
     if ($password_length >= 8 && $password_length <= 32) {
-        $generated_password = generateRandomPassword($password_length);
+        // Verifica se è stata selezionata l'opzione per consentire o meno la ripetizione dello stesso carattere
+        $allow_repetition = isset($_GET['allow_repetition']) ? boolval($_GET['allow_repetition']) : false;
+
+        // Genera la password casuale con il parametro aggiuntivo
+        $generated_password = generateRandomPassword($password_length, $allow_repetition);
 
         // Salviamo la password generata nella variabile di sessione
         $_SESSION['generated_password'] = $generated_password;
@@ -106,8 +110,8 @@ if (isset($_GET['password_length'])) {
                     <label for="character">Consenti ripetizioni di uno o più caratteri:</label>
                 </div>
                 <div class="col-12 col-md-6">
-                    <input type="radio"><span class="ps-1 pe-3">Sì</span>
-                    <input type="radio"><span class="ps-1">No</span>
+                    <input type="radio" name="allow_repetition" value="1"><span class="ps-1 pe-3">Sì</span>
+                    <input type="radio" name="allow_repetition" value="0"><span class="ps-1">No</span>
                 </div>
                 <!--checkbox-->
                 <div class="mt-3 col-12 col-md-4">

@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Funzioni:
 include_once 'functions.php';
 // Controllo se è stata inviata una richiesta con la lunghezza della password
@@ -8,7 +9,13 @@ if (isset($_GET['password_length'])) {
     // Controllo che la lunghezza sia valida (tra 8 e 32 caratteri)
     if ($password_length >= 8 && $password_length <= 32) {
         $generated_password = generateRandomPassword($password_length);
-        echo "<p>La password generata è: <strong>$generated_password</strong></p>";
+
+        // Salviamo la password generata nella variabile di sessione
+        $_SESSION['generated_password'] = $generated_password;
+
+        // Redirect alla pagina dedicata per mostrare la password
+        header('Location: password_page.php');
+        exit;
     } else {
         echo "<p>La lunghezza della password deve essere compresa tra 8 e 32 caratteri.</p>";
     }

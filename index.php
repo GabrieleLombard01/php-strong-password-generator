@@ -1,18 +1,6 @@
 <?php
-// Funzione per generare una password casuale
-function generateRandomPassword($length)
-{
-    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-    $password = '';
-    $charsLength = strlen($chars);
-
-    for ($i = 0; $i < $length; $i++) {
-        $password .= $chars[rand(0, $charsLength - 1)];
-    }
-
-    return $password;
-}
-
+// Funzioni:
+include_once 'functions.php';
 // Controllo se è stata inviata una richiesta con la lunghezza della password
 if (isset($_GET['password_length'])) {
     $password_length = intval($_GET['password_length']);
